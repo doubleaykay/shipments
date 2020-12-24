@@ -26,7 +26,7 @@ function deleteTrackingNumber(num) {
     // save list to local storage
     setTrackingNumbers(list_of_tracking_nums);
     // refresh web page
-    refreshTrackingList();
+    // refreshTrackingList();
 }
 
 function trackTrackingNumber(num) {
@@ -39,8 +39,9 @@ function trackTrackingNumber(num) {
 function addListItem(value, index, array) {
     var ul = document.querySelector("ul");
     var li = document.createElement("li");
-    li.className = "list-group-item";
+    li.className = "list-group-item d-flex justify-content-between";
     li.id = value;
+    // li.innerHTML = "<a href=https://www.google.com/search?q=".concat(value).concat(" target=\"_blank\">").concat(value).concat("</a>").concat(" <button type=\"button\" class=\"btn btn-danger\" onclick=\"deleteOnClick(").concat("\\ \"").concat(value).concat("\\ \"").concat(")\">-</button>");
     li.innerHTML = "<a href=https://www.google.com/search?q=".concat(value).concat(" target=\"_blank\">").concat(value).concat("</a>");
     ul.appendChild(li);
 }
@@ -60,14 +61,35 @@ function addOnClick() {
     input = document.getElementById("textTrackingNumber");
     // get value of input
     var num = input.value;
-    // add tracking number to list
-    addTrackingNumber(num);
-    // clear input
-    input.value = "";
+    // validate
+    if (num == "") {
+        alert("Please enter a tracking number.");
+        return false;
+    }
 
+    regExp = /^[0-9]*$/g
+    if (regExp.test(num)) {
+        // add tracking number to list
+        addTrackingNumber(num);
+        // clear input
+        input.value = "";
+    } else {
+        alert("Please enter a valid tracking number.")
+        return false;
+    }
 }
 
 function deleteOnClick(num) {
+    // get handler
+    elem = document.getElementById(num);
     // delete element
-    document.getElementById(num).outerHTML = "";
+    elem.parentNode.removeChild(elem);
+    // remove from storage
+    deleteTrackingNumber(num);
+}
+
+function removeAllOnClick() {
+    list_of_tracking_nums = [];
+    setTrackingNumbers(list_of_tracking_nums);
+    refreshTrackingList;
 }
