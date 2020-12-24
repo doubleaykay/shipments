@@ -98,3 +98,11 @@ function removeAllOnClick() {
     setTrackingNumbers(list_of_tracking_nums);
     refreshTrackingList();
 }
+
+function firstRun() {
+    // store an empty array if this is the first run
+    if (!(JSON.parse(localStorage.getItem("list_of_tracking_nums")))) {
+        list_of_tracking_nums = [];
+        setTrackingNumbers(list_of_tracking_nums);
+    }
+}
