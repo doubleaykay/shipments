@@ -46,12 +46,17 @@ function addListItem(value, index, array) {
     ul.appendChild(li);
 }
 
-function refreshTrackingList() {
+function deleteAllListElements() {
     // delete all list elements
     var list_elements = document.getElementsByClassName("list-group-item");
     while (list_elements[0]) {
         list_elements[0].parentNode.removeChild(list_elements[0]);
     }
+}
+
+function refreshTrackingList() {
+    // delete all list elements
+    deleteAllListElements();
     // refresh HTML list
     list_of_tracking_nums.forEach(addListItem);
 }
@@ -91,5 +96,5 @@ function deleteOnClick(num) {
 function removeAllOnClick() {
     list_of_tracking_nums = [];
     setTrackingNumbers(list_of_tracking_nums);
-    refreshTrackingList;
+    refreshTrackingList();
 }
