@@ -40,6 +40,7 @@ function addListItem(value, index, array) {
     var ul = document.querySelector("ul");
     var li = document.createElement("li");
     li.className = "list-group-item";
+    li.id = value;
     li.innerHTML = "<a href=https://www.google.com/search?q=".concat(value).concat(" target=\"_blank\">").concat(value).concat("</a>");
     ul.appendChild(li);
 }
@@ -55,9 +56,18 @@ function refreshTrackingList() {
 }
 
 function addOnClick() {
+    // get input handler
+    input = document.getElementById("textTrackingNumber");
+    // get value of input
+    var num = input.value;
+    // add tracking number to list
+    addTrackingNumber(num);
+    // clear input
+    input.value = "";
 
 }
 
-function deleteOnClick() {
-
+function deleteOnClick(num) {
+    // delete element
+    document.getElementById(num).outerHTML = "";
 }
