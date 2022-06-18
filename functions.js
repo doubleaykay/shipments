@@ -72,16 +72,18 @@ function addOnClick() {
         return false;
     }
 
-    regExp = /^[0-9]*$/g
-    if (regExp.test(num)) {
-        // add tracking number to list
-        addTrackingNumber(num);
-        // clear input
-        input.value = "";
-    } else {
-        alert("Please enter a valid tracking number.")
-        return false;
-    }
+    addTrackingNumber(num);
+
+    // regExp = /^[0-9]*$/g
+    // if (regExp.test(num)) {
+    //     // add tracking number to list
+    //     addTrackingNumber(num);
+    //     // clear input
+    //     input.value = "";
+    // } else {
+    //     alert("Please enter a valid tracking number.")
+    //     return false;
+    // }
 }
 
 function deleteOnClick(num) {
